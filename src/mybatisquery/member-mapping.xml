@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="spring.test.com.dao.MemberDAO">
+
+	<select id="memberSelectAll">
+	SELECT * FROM TEST_MEMBER;
+	</select>
+
+	<select id="memberSelect">
+	SELECT * FROM TEST_MEMBER WHERE TM_NUM = #{tm_num}
+	</select>
+
+	<select id="loginChk">
+	SELECT TM_EMAIL, TM_PW FROM TEST_MEMBER WHERE TM_NUM = #{tm_num}
+	</select>
+
+	<insert id="memberInsert" parameterType="memberVO">
+	INSERT INTO TEST_MEMBER(TM_NUM, TM_NAME, TM_EMAIL, TM_PW, 
+						TM_ZIPCODE, TM_ADDR, TM_EXTRAADDR, 
+						TM_BIRTH, TM_LEVEL, 
+						TM_INSERTDATE, TM_UPDATEDATE, TM_DELETEYN)
+	VALUES(#{tm_num}, #{tm_name}, #{tm_email}, #{tm_pw}, #{tm_zipcode}, #{tm_addr}, 
+			#{tm_extraAddr}, #{tm_birth}, 'N', SYSDATE, SYSDATE, 'Y')
+	</insert>
+
+	<update id="memberUpdate">
+	</update>
+
+	<delete id="memberDelete">
+	</delete>
+
+</mapper>

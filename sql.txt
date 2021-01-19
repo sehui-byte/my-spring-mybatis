@@ -1,0 +1,28 @@
+-- <회원 테이블>
+-- 일련번호, 이름, 이메일, 비밀번호(암호화),주소(다음API) , 생년월일
+-- 회원레벨, 가입날짜, 정보수정날짜, 탈퇴여부
+CREATE TABLE TEST_MEMBER(
+	TM_NUM VARCHAR2(20) PRIMARY KEY, --일련번호
+	TM_NAME VARCHAR2(20) NOT NULL, --이름
+	TM_EMAIL VARCHAR2(300) NOT NULL UNIQUE, --이메일은 중복가입 안되게 UNIQUE (아이디)
+	TM_PW VARCHAR2(100) NOT NULL, --8자~12자
+	TM_ZIPCODE NUMBER, --우편번호(5자리)
+	TM_ADDR VARCHAR2(500) NOT NULL, --주소 (다음 API - 도로명, 지번 중 사용자가 선택한 값으로 저장)
+	TM_EXTRAADDR VARCHAR2(100), --나머지 주소
+	TM_BIRTH DATE, --생년월일 (선택)
+	TM_LEVEL VARCHAR2(1) NOT NULL, -- 회원 권한?레벨? (일반회원, 관리자, 불량회원 등)
+	TM_INSERTDATE DATE NOT NULL,--회원가입 날짜
+	TM_UPDATEDATE DATE NOT NULL, --회원정보 업데이트 날짜
+	TM_DELETEYN VARCHAR2(1) CHECK (TM_DELETEYN IN('Y','N')) -- 탈퇴여부 (탈퇴하면 N)
+);
+
+
+-- 회원 소개 테이블
+-- 프로필사진, 회원소개글
+CREATE TABLE TEST_INTRO(
+  TM_NUM VARCHAR2(20), -- 외래키(회원 일련번호)
+	TI_NUM VARCHAR2(20) PRIMARY KEY, --기본키 (회원소개 테이블 일련번호)
+	TI_PHOTO VARCHAR2(500), --파일경로
+	TI_TXT VARCHAR2(100), -- 회원소개(50자 이내)
+    FOREIGN KEY(TM_NUM) REFERENCES TEST_MEMBER(TM_NUM)
+);
