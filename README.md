@@ -1,0 +1,5 @@
+# my-spring-mybatis
+
+spring framework 3.2.9 와 mybatis를 이용하여 간단한 게시판 구현하기.
+- 회원가입 구현
+- 세션 로그인 구현
