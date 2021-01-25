@@ -10,8 +10,8 @@
 	SELECT * FROM TEST_MEMBER WHERE TM_NUM = #{tm_num}
 	</select>
 
-	<select id="loginChk">
-	SELECT TM_EMAIL, TM_PW FROM TEST_MEMBER WHERE TM_NUM = #{tm_num}
+	<select id="loginChk" resultType="memberVO" parameterType="memberVO">
+	SELECT * FROM TEST_MEMBER WHERE TM_EMAIL = #{tm_email,jdbcType=VARCHAR} AND TM_PW = #{tm_pw,jdbcType=VARCHAR}
 	</select>
 
 	<insert id="memberInsert" parameterType="memberVO">
@@ -27,6 +27,7 @@
 	</update>
 
 	<delete id="memberDelete">
+	
 	</delete>
 
 </mapper>

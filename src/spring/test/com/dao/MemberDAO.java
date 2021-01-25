@@ -11,7 +11,7 @@ public interface MemberDAO {
 	List<MemberVO> memberSelect(MemberVO mvo);
 	int memberUpdate(MemberVO mvo);
 	int memberDelete(MemberVO mvo);
-	List<MemberVO> loginChk(MemberVO mvo);
+	MemberVO loginChk(MemberVO mvo);
 	
 
 }

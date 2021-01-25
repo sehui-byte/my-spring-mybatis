@@ -26,8 +26,7 @@ public class MemberDAOImpl implements MemberDAO{
 
 	@Override
 	public List<MemberVO> memberSelect(MemberVO mvo) {
-		// TODO Auto-generated method stub
-		return null;
+		return sqlSession.selectOne("memberSelect", mvo);
 	}
 
 	@Override
@@ -43,9 +42,8 @@ public class MemberDAOImpl implements MemberDAO{
 	}
 
 	@Override
-	public List<MemberVO> loginChk(MemberVO mvo) {
-		// TODO Auto-generated method stub
-		return null;
+	public MemberVO loginChk(MemberVO mvo) {
+		return (MemberVO)sqlSession.selectList("loginChk", mvo);
 	}
 
 }

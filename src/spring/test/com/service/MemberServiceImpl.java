@@ -2,6 +2,8 @@ package spring.test.com.service;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -48,6 +50,26 @@ public class MemberServiceImpl implements MemberService{
 	public int memberDelete(MemberVO mvo) {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	@Override
+	public boolean login(MemberVO mvo, HttpSession session) {
+		System.out.println(memberDAO.loginChk(mvo));
+		if(memberDAO.loginChk(mvo) != null) {
+			System.out.println(memberDAO.loginChk(mvo));
+			System.out.println("userpw >> " + memberDAO.loginChk(mvo).getPw());
+			session.setAttribute("userid", memberDAO.loginChk(mvo).getEmail());
+			return true;
+		}
+		System.out.println("null");
+		return false;
+	}
+
+	@Override
+	public void logout(HttpSession session) {
+		//세션 종료
+		session.invalidate();
+		
 	}
 
 }
